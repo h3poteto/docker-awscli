@@ -2,7 +2,7 @@ FROM alpine:3.4
 
 RUN set -x && \
     apk --no-cache update && \
-    apk --no-cache add python py-pip py-setuptools ca-certificates groff less curl tar && \
+    apk --no-cache add python py-pip py-setuptools ca-certificates groff less curl tar git && \
     pip --no-cache-dir install awscli && \
     rm -rf /var/cache/apk/* && \
     mkdir /work
