@@ -1,14 +1,16 @@
-FROM alpine:3.4
+FROM python:3.7.4-alpine3.10
+
+ENV AWS_VER 1.16.198
 
 RUN set -x && \
     apk --no-cache update && \
-    apk --no-cache add python py-pip py-setuptools ca-certificates groff less curl tar git openssl openssh && \
-    pip --no-cache-dir install awscli && \
+    apk --no-cache add ca-certificates curl tar git openssl openssh && \
+    pip --no-cache-dir install awscli==$AWS_VER && \
     rm -rf /var/cache/apk/* && \
     mkdir /work
 
-ENV VER 17.03.0-ce
+ENV VER 18.09.7
 RUN set -x && \
-    curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-${VER}.tgz && \
-    tar -xz -C /tmp -f /tmp/docker-${VER}.tgz && \
+    curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz && \
+    tar -xz -C /tmp -f /tmp/docker-$VER.tgz && \
     mv /tmp/docker/* /usr/bin
