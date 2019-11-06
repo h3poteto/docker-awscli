@@ -1,6 +1,6 @@
 FROM python:3.7.4-alpine3.10
 
-ENV AWS_VER 1.16.198
+ENV AWS_VER 1.16.274
 
 RUN set -x && \
     apk --no-cache update && \
